@@ -14,47 +14,52 @@ import it.uniroma3.siw.siw_movie_0.model.Movie;
 
 @Controller
 public class MovieController {
-    @Autowired MovieRepository movieRepository;
+	@Autowired MovieRepository movieRepository;
 
-    @GetMapping("/formNewMovie")
-    public String formNewMovie(Model model){
-        model.addAttribute("movie", new Movie());
-        return "formNewMovie.html";
-    }
+	
+	@GetMapping("/index.html")
+	public String index() {
+		return "index.html";
+	}
+	
+	@GetMapping("/formNewMovie")
+	public String formNewMovie(Model model) {
+		model.addAttribute("movie", new Movie());
+		return "formNewMovie.html";
+	}
 
-    @PostMapping("/movies")
-    public String newMovie (@ModelAttribute("movie") Movie movie, Model model ) {
-        if(!movieRepository.existsByTitleAndYear(movie.getTitle(), movie.getYear())) {
-            this.movieRepository.save(movie);
-            model.addAttribute("movie", movie);
-            return "movie.html";
-        }
-        else {
-            model.addAttribute("messaggioErrore", "Questo film esiste gia");
-            return "formNewMovie.htlm";
-        }
-    }
+	@PostMapping("/movies")
+	public String newMovie(@ModelAttribute("movie") Movie movie, Model model) {
+		if (!movieRepository.existsByTitleAndYear(movie.getTitle(), movie.getYear())) {
+			this.movieRepository.save(movie); 
+			model.addAttribute("movie", movie);
+			return "movie.html";
+		} else {
+			model.addAttribute("messaggioErrore", "Questo film esiste già");
+			return "formNewMovie.html"; 
+		}
+	}
 
-    @GetMapping("/movies/{id}")
-    public String getMovie(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("movie", this.movieRepository.findById(id).get());
-        return "movie.htlm";
-    }
+	@GetMapping("/movies/{id}")
+	public String getMovie(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("movie", this.movieRepository.findById(id).get());
+		return "movie.html";
+	}
 
-    @GetMapping("/movies")
-    public String showMovies(Model model) {
-        model.addAttribute("movies", this.movieRepository.findAll());
-        return "movies.html";
-    }
+	@GetMapping("/movies")
+	public String showMovies(Model model) {
+		model.addAttribute("movies", this.movieRepository.findAll());
+		return "movies.html";
+	}
+	
+	@GetMapping("/formSearchMovies")
+	public String formSearchMovies() {
+		return "formSearchMovies.html";
+	}
 
-    @GetMapping("/formSerchMovies")
-    public String formSearchMovies() {
-        return "formSearchMovies.html";
-    }
-
-    @PostMapping("/searchMovies")
-    public String searchMovies(Model model,@RequestParam Integer year) {
-        model.addAttribute("movies", this.movieRepository.findByYear(year));
-        return "foundMovies.html";
-    }    
+	@PostMapping("/searchMovies")
+	public String searchMovies(Model model, @RequestParam Integer year) {
+		model.addAttribute("movies", this.movieRepository.findByYear(year));
+		return "foundMovies.html";
+	}
 }
