@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Film</title>
-        <link rel="stylesheet" href="/stile.css?version=2"" />
-    </head>
-    <body>
-        <div><a href="/"><img src="/logo-siw.png" width="50%"/> </a></div>
-        <div th:if="${movie}">
-            <h1 th:text="${movie.title}">Titolo film</h1>
-            <div>Anno: <span th:text="'(' + ${movie.year} + ')'">2000 </span></div>
-            <span><img width="30%" th:src=${movie.urlImage}/></span>
-        </div>
-        <div th:unless="${movie}">Non esiste </div>
-    </body>
+
+<head>
+	<title>Film</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+	<div><a href="/"><img src="/logo-siw.png" width="50%"/></a></div>
+	<h1>Film</h1>
+	<div th:if="${movies.isEmpty()}">Non ci sono film nel sistema</div>
+	<ul>
+		<li th:each="movie : ${movies}">
+			<a th:href="@{'/movies' + '/' + ${movie.id}}"
+				th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</a>
+		</li>
+	</ul>
+</body>
+
 </html>
