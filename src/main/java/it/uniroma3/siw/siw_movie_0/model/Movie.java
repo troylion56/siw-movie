@@ -1,9 +1,14 @@
 package it.uniroma3.siw.siw_movie_0.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -13,6 +18,12 @@ public class Movie {
     private String title;
     private Integer year;
     private String urlImage;
+
+    @ManyToOne
+    private Artist director;
+
+    @OneToMany
+    private List <News> news;
 
     
 
