@@ -16,12 +16,12 @@ import it.uniroma3.siw.siw_movie_0.model.Movie;
 public class MovieController {
 	@Autowired MovieRepository movieRepository;
 
-	@GetMapping("/indexMovie.html")
+	@GetMapping("/indexMovie")
 	public String indexMovie(){
 		return "indexMovie.html";
 	}
 	
-	@GetMapping("/index.html")
+	@GetMapping("/index")
 	public String index() {
 		return "index.html";
 	}
