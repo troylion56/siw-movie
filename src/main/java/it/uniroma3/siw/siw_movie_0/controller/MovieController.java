@@ -1,6 +1,5 @@
 package it.uniroma3.siw.siw_movie_0.controller;
 
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

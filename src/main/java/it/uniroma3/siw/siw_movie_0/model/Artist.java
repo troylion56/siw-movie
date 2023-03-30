@@ -2,10 +2,6 @@ package it.uniroma3.siw.siw_movie_0.model;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
