@@ -24,7 +24,7 @@ public class ArtistController {
 
     @PostMapping("/artist")
     public String newArtist(@ModelAttribute("artist")Artist artist, Model model){
-        if(!artistRepository.existByNameAndUsername(artist.getName(),artist.getUsername())) {
+        if(!artistRepository.existsByNameAndUsername(artist.getName(), artist.getUsername())) {
             this.artistRepository.save(artist);
             model.addAttribute("artist", artist);
             return "artist.html";
