@@ -10,8 +10,20 @@
     <div th:if="${movie}">
 	    <h1 th:text="${movie.title}">Dettagli Film</h1>
         <div>Anno: <span th:text="'(' + ${movie.year} + ')'">2000</span></div>
-        <a href="@{"addDirector' + '/' + &{movie.id}}"></a>
-    </div>
-    <div th:unless="${movie}">Non esiste</div>
+        <div th:if="${movie}">
+          <h1 th:text="${movie.title}">Titolo film</h1>
+          <div>Anno: <span th:text="'(' + ${movie.year} + ')'">2000</span></div>
+       
+          <div th:if ="${artist}">
+              <div>Regista: <span th:text = "${artist.nome} + ' ' + ${artist.cognome}"> Eren Yeager</span></div>
+              <a th:href="@{'/directorsToAdd' + '/' + ${movie.id}}"> modifica regista</a>
+          </div>
+            <div th:unless="${artist}">
+                <a th:href="@{'/directorsToAdd' + '/' + ${movie.id}}"> agginugi regista</a>
+            </div>
+            <a th:href="@{'/modificaAttori' +  '/' + ${movie.id} }"> modifica Attori</a>
+       
+          </div>
+          <div th:unless="${movie}">Non esiste</div>
   </body>
 </html>

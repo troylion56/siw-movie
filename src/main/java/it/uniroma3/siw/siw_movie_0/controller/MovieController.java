@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import it.uniroma3.siw.siw_movie_0.repository.ArtistRepository;
 import it.uniroma3.siw.siw_movie_0.repository.MovieRepository;
 import it.uniroma3.siw.siw_movie_0.model.Movie;
@@ -82,5 +84,28 @@ public class MovieController {
 		this.movieRepository.save(movie);
 		model.addAttribute("movie", movie);
 		return "formUpdateMovie.html";
-	} 
+	}
+	
+	@GetMapping("/manageMovies")
+	public String manageMovies (Model model){
+		model.addAttribute("movies", this.movieRepository.findAll());
+		return "manageMovies.html";
+	}
+
+	@GetMapping("/formUpdateMovie/{id}")
+	public String formUpdate (@PathVariable ("id") Long id,  Model model){
+		Movie movie=movieRepository.findById(id).get();
+		model.addAttribute(("movie"), movie);
+		if(movie.getDirector()!=null){
+			model.addAttribute("artist", movie.getDirector());
+		}
+		return "formUpdateMovie.html";
+	}
+
+	@GetMapping("/directorsToAdd/{id}")
+	public String directorAdd (@PathVariable("id") Long id, Model model){
+		model.addAttribute("artist", artistRepository.findAll());
+		model.addAttribute("movie", movieRepository.findById(id).get());
+		return "directorsToAdd.html";
+	}
 }
