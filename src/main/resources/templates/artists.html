@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Film</title>
+
+<head>
+	<title>Artisti</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -17,12 +18,14 @@
 	</header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-    <h1>Dettagli Film</h1>
-    <div th:if="${movie}">
-        <span th:text="${movie.title}">Up!</span>
-        <span th:text="'(' + ${movie.year} + ')'">2000</span>
-        <span><img width="5%" th:src=${movie.urlImage} /></span>
-    </div>
-    <div th:unless="${movie}">Non esiste</div>
-  </body>
+	<h1>Artisti</h1>
+	<div th:if="${artists==null || artists.isEmpty()}">Non ci sono artisti nel sistema</div>
+	<ul>
+		<li th:each="artist : ${artists}">
+			<a th:href="@{'/artist' + '/' + ${artist.id}}"
+				th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</a>
+		</li>
+	</ul>
+</body>
+
 </html>

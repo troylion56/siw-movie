@@ -1,4 +1,4 @@
-package it.uniroma3.siw.siw_movie_0;
+package it.uniroma3.siw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class SiwMovie0Application {
 	public static void main(String[] args) {
 		SpringApplication.run(SiwMovie0Application.class, args);
 	}
-
 }

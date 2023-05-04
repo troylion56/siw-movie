@@ -2,9 +2,7 @@
 <html>
 
 <head>
-	<title>
-		SiwMovie - Homepage
-	</title>
+	<title>SiwMovie - Registrazione conclusa</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -19,14 +17,21 @@
 		</div>
 	</header>
 
-	<div><img src="/images/logo-siw.png" width="50%" /></div>
-	<h1>Consulta l'archivio</h1>
 	<div>
-		<a href="/movie">Elenco Film</a>
+		<a href="/"><img src="/images/logo-siw.png" width="50%"/></a>
+	</div>
+	<h1>Congratulazioni ti sei registrato!</h1>
+	<div>
+		<span>Nome: </span>
+		<span th:text="${user.name}"></span>
 	</div>
 	<div>
-		<a href="/artist">Elenco Artisti</a>
+		<span>Cognome: </span>
+		<span th:text="${user.surname}"></span>
+	</div>
+	<div>
+		<span>Email: </span>
+		<span th:text="${user.email}"></span>
 	</div>
 </body>
-
 </html>

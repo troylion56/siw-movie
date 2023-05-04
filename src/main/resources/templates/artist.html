@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Film</title>
+    <title>Artista</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 </head>
 
@@ -17,12 +17,12 @@
 	</header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-    <h1>Dettagli Film</h1>
-    <div th:if="${movie}">
-        <span th:text="${movie.title}">Up!</span>
-        <span th:text="'(' + ${movie.year} + ')'">2000</span>
-        <span><img width="5%" th:src=${movie.urlImage} /></span>
+    <h1>Dettagli Artista</h1>
+    <div th:if="${artist}">
+        <span th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
+        <span th:text="'(' + ${artist.dateOfBirth} + ')'">20/20/2000</span>
+        <span><img width="5%" th:src=${artist.urlOfPicture} /></span>
     </div>
-    <div th:unless="${movie}">Non esiste</div>
+    <div th:unless="${artist}">Non esiste</div>
   </body>
 </html>

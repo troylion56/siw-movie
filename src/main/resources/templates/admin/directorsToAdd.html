@@ -2,8 +2,8 @@
 <html>
 
 <head>
-	<title>Film</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<title>Scelta regista</title>
+	<link rel="stylesheet" href="/css/stile.css"/>
 </head>
 
 <body>
@@ -18,12 +18,12 @@
 	</header>
 
 	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-	<h1>Film</h1>
-	<div th:if="${movies==null || movies.isEmpty()}">Non ci sono film nel sistema</div>
+	<h1 th:text="'Regista per il film ' + ${movie.title}"></h1>
+	<div th:if="${artists.isEmpty()}">Non ci sono registi nel sistema</div>
 	<ul>
-		<li th:each="movie : ${movies}">
-			<a th:href="@{'/movie' + '/' + ${movie.id}}"
-				th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</a>
+		<li th:each="artist : ${artists}">
+			<a th:href="@{'/admin/setDirectorToMovie/'+ ${artist.id}+'/'+${movie.id}}"
+				th:text="${artist.name} + ' ' + ${artist.surname}">Steven Spielberg</a>
 		</li>
 	</ul>
 </body>
