@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.repository.ArtistRepository;
+import it.uniroma3.siw.service.ArtistService;
 
 @Controller
 public class ArtistController {

@@ -25,11 +25,12 @@ import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.repository.ArtistRepository;
 import it.uniroma3.siw.repository.MovieRepository;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.MovieService;
 
 @Controller
 public class MovieController {
 	@Autowired 
-	private MovieRepository movieRepository;
+	private MovieService movieRepository;
 	
 	@Autowired 
 	private ArtistRepository artistRepository;
@@ -48,7 +49,12 @@ public class MovieController {
 
 	@GetMapping(value="/admin/formUpdateMovie/{id}")
 	public String formUpdateMovie(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("movie", movieRepository.findById(id).get());
+		Movie movie=movieRepository.findMovieById(id);
+		if(movie!=null)
+			model.addAttribute("movie", movie);
+		else{
+			return "movieError.html";
+		}
 		return "admin/formUpdateMovie.html";
 	}
 
