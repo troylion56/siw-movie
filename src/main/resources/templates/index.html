@@ -2,14 +2,26 @@
 <html>
 
 <head>
-	<title>
-		SiwMovie - Homepage
-	</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<title>SiwMovie - Homepage</title>
+	<link rel="stylesheet" href="/css/stile.css"/>
 </head>
 
 <body>
 	<header>
+		<video src="/videos/theboys.webm" autoplay muted></video>
+		<nav>
+			<div class="logo_ul">
+				<img src="/img/logo-siw.png" alt="">
+				<ul>
+					<li>
+						<a href="/movie">Elenco Film</a>
+					</li>
+					<li>
+						<a href="/artist">Elenco Artisti</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 		<div th:if="${#request.userPrincipal}">
 			<span th:text="${#request.userPrincipal.principal.username}"></span>
 			<a href="/logout">Logout</a>
@@ -18,15 +30,6 @@
 			<a href="/login">Login</a>
 		</div>
 	</header>
-
-	<div><img src="/images/logo-siw.png" width="50%" /></div>
-	<h1>Consulta l'archivio</h1>
-	<div>
-		<a href="/movie">Elenco Film</a>
-	</div>
-	<div>
-		<a href="/artist">Elenco Artisti</a>
-	</div>
 </body>
 
 </html>
