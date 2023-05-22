@@ -37,7 +37,7 @@ header {
     /*border: 1px solid #fff;*/
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0px 10px 25px -10px #000;
+    box-shadow: 0px 10px 25px -8px #000;
 }
 
 header::before {
@@ -46,7 +46,7 @@ header::before {
     width: 100%;
     height: 100%;
     background: url("/images/money heist1.jpg") no-repeat center center/cover;
-    opacity: .9;
+    opacity: .6;
     z-index: -1;
 }
 
@@ -61,16 +61,16 @@ header::after {
 
 header video{
     position: absolute;
-    width: 120%;
-    height: 190%;
-    top: -47%;
+    width: 136%;
+    height: 196%;
+    top: -49%;
     z-index: -1;
 }
 
 header nav{
     width: 100%;
     height: 10%;
-    border: 1px solid #fff;
+    /*border: 1px solid #fff;*/ /*attiva se vuoi vedere la navBar*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,10 +84,10 @@ header nav .logo_ul{
     justify-content: center;
 }
 
-
 header nav .logo_ul img{
     width: 90px;  
 }
+
 
 header nav .logo_ul ul{
     display: flex;
@@ -96,11 +96,11 @@ header nav .logo_ul ul{
     list-style: none;
 }
 
-header nav .logo_ul li{
+header nav .logo_ul ul li{
     padding: 3px 15px;
 }
 
-header nav .logo_ul li a{
+header nav .logo_ul ul li a{
     text-decoration: none;
     color: white;
     font-size: 12px;
@@ -108,15 +108,80 @@ header nav .logo_ul li a{
     transition: .3s linear;
 }
 
-header nav .logo_ul li a:hover{
+header nav .logo_ul ul li a:hover{
     color: rgb(255, 255, 255, .7);
 }
 
 
+.login {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    /* Add more styles as per your requirements */
+}
 
+header .content{
+    position: relative;
+    color: #fff;
+    margin-top: 50px;
+    padding-left: 50px;
+}
 
-header a { 
-	text-decoration: none; 
-    color: white;
-    font-size: 0.6em;
+header .content h1{
+    font-size: 50px;
+}
+
+header .content p{
+    font-size: 11px;
+    width: 350px;
+    word-break: break-all;
+}
+
+header .content .details{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+header .content .details h6{
+    color: rgb(255, 255, 255, .8);
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+header .content .details h5{
+    color: rgb(142, 230, 48, .8);
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+header .content .details h4{
+    color: #fff;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+header .content .details h3{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+header .content .details h3 span{
+    background: yellow;
+    color: #000;
+    padding: 0px 3px;
+    margin: 0px 5px, 0px 10px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+header .content .details h3 i{
+    margin-right: 5px;
 }
