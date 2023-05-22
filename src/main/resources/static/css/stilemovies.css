@@ -1,0 +1,55 @@
+/* Apply some basic styles to the body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+/* Style the header */
+header {
+  background-color: #333;
+  padding: 10px;
+  color: #fff;
+}
+
+/* Style the navigation menu */
+nav {
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px;
+}
+
+nav ul li a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Style the content area */
+.content {
+  padding: 20px;
+}
+
+/* Style the footer */
+footer {
+  background-color: #333;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
