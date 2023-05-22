@@ -5,23 +5,15 @@
 	<title>
 		SiwMovie - Registrazione
 	</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/stileReg.css" />
 </head>
 
 <body>
 	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${#request.userPrincipal}">
-			<a href="/login">Login</a>
+		<div class="logo">
+			<a href="/"><img src="/images/logo-siw.png" width="20%"/></a>
 		</div>
 	</header>
-
-	<div>
-		<a href="/"><img src="/images/logo-siw.png" width="50%" /></a>
-	</div>
 	<h1>Registrazione nuovo utente</h1>
 	<form th:action="@{/register}" method="POST">
 		<div>
@@ -63,6 +55,9 @@
 			<button type="submit">Registra</button>
 		</div>
 	</form>
+	<div>	
+		<a th:href="@{/login}" th:text="accedi">Accedi</a>
+	</div>
 </body>
 
 </html>

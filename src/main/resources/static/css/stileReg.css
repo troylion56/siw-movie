@@ -1,0 +1,90 @@
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+} 
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+/* Logo Styles */
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logo a img {
+    width: 20%;
+}
+
+/* Registration Form Styles */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Error Message Styles */
+span.error {
+    color: red;
+}
+
+/* Login Link Styles */
+div:last-child {
+    text-align: center;
+    margin-top: 10px;
+}
+
+div:last-child a {
+    color: #333;
+    text-decoration: none;
+}

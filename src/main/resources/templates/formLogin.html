@@ -5,23 +5,15 @@
 	<title>
 		SiwMovie - Login
 	</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/stileLog.css" />
 </head>
 
 <body>
 	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${#request.userPrincipal}">
-			<a href="/login">Login</a>
+		<div class="logo">
+			<a href="/"><img src="/images/logo-siw.png" width="20%"/></a>
 		</div>
 	</header>
-
-	<div>
-		<a href="/"><img src="/images/logo-siw.png" width="50%"/></a>
-	</div>
 	<h1>Login</h1>
 	<form th:action="@{/login}" method="POST">
 			<div>
@@ -39,7 +31,7 @@
 				<span><button type="submit">Login</button></span>
 			</div>
 	</form>
-	<div>
+	<div>	
 		<a th:href="@{/register}" th:text="Registrati">Registrati</a>
 	</div>
 </body>
