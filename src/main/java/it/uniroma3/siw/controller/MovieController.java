@@ -118,7 +118,7 @@ public class MovieController {
 			return "movieError.html";
 		}
 	}
-
+	/*
 	@GetMapping("/movie")
 	public String getMovies(Model model) {
 		
@@ -128,7 +128,13 @@ public class MovieController {
 		model.addAttribute("movies", this.movieService.findAllMovie());
 		model.addAttribute("user", credentials.getUser());
 		return "movies.html";
-	}
+	}*/
+
+	@GetMapping("/movie")
+	public String getMovies(Model model) {
+    	model.addAttribute("movies", this.movieService.findAllMovie());
+    	return "movies.html";
+}
 	
 	@GetMapping("/formSearchMovies")
 	public String formSearchMovies() {

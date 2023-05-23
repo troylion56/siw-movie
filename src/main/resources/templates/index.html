@@ -46,16 +46,9 @@
 		</div>
 		<section>
 			<h4>Film</h4>
-
-			<div class="cards" th:if="${movies != null && !movies.isEmpty()}">
-				<ul>
-					<li th:each="movie : ${movies}">
-						<a class="card" th:href="@{'/movie/' + ${movie.id}}"
-							th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</a>
-					</li>
-				</ul>
+			<div class="cards">
+				<a href="#" class="card"></a>
 			</div>
-			<div th:if="${movies == null || movies.isEmpty()}">Non ci sono film nel sistema</div>
 		</section>
 	</header>
 </body>

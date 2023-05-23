@@ -1,4 +1,4 @@
-/* Body Styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -6,7 +6,6 @@ body {
     padding: 0;
 } 
 
-/* Header Styles */
 header {
     background-color: #333;
     color: #fff;
@@ -19,8 +18,6 @@ header a {
     margin-left: 10px;
 }
 
-/* Logo Styles */
-
 .logo {
     display: flex;
     justify-content: center;
@@ -31,7 +28,6 @@ header a {
     width: 20%;
 }
 
-/* Registration Form Styles */
 h1 {
     text-align: center;
     margin-top: 20px;
@@ -73,12 +69,10 @@ form button[type="submit"] {
     cursor: pointer;
 }
 
-/* Error Message Styles */
 span.error {
     color: red;
 }
 
-/* Login Link Styles */
 div:last-child {
     text-align: center;
     margin-top: 10px;
