@@ -2,27 +2,35 @@
 <html>
   <head>
     <title>Artista</title>
-	<link rel="stylesheet" href="/css/stilePerTuttoilrest.css" />
+	<link rel="stylesheet" href="/css/artistSingolare.css" />
 </head>
 
 <body>
-	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${#request.userPrincipal}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
-
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+	
+		<header>
+			<nav>
+				<div class="navbar">
+					<div class="logo">
+						<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+					</div>
+					<div class="user-info" th:if="${#request.userPrincipal}">
+						<span th:text="${#request.userPrincipal.principal.username}"></span>
+						<a href="/logout">Logout</a>
+					</div>
+					<div class="login-link" th:unless="${#request.userPrincipal}">
+						<a href="/login">Login</a>
+					</div>
+				</div>
+			</nav>
+		</header>
     <h1>Dettagli Artista</h1>
-    <div th:if="${artist}">
-        <span th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
-        <span th:text="'(' + ${artist.dateOfBirth} + ')'">20/20/2000</span>
-        <span><img width="5%" th:src=${artist.urlOfPicture} /></span>
+	<div class="container">
+    <div class="artist-details" th:if="${artist}">
+        <span class="artist-title" th:text="${artist.name} + ' ' + ${artist.surname}">Dino Risi</span>
+        <span class="artist-year" th:text="'(' + ${artist.dateOfBirth} + ')'">20/20/2000</span>
+        <span><img class="artist-image" width="5%" th:src=${artist.urlOfPicture} /></span>
     </div>
-    <div th:unless="${artist}">Non esiste</div>
+    <div class="not-found-message" th:unless="${artist}">Non esiste</div>
+	</div>
   </body>
 </html>

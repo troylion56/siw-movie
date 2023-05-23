@@ -3,29 +3,56 @@
 
 <head>
 	<title>Scelta regista</title>
-	<link rel="stylesheet" href="/css/stilePerTuttoilrest.css"/>
+	<link rel="stylesheet" href="/css/directorsToAdd.css"/>
 </head>
 
 <body>
 	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${#request.userPrincipal}">
-			<a href="/login">Login</a>
-		</div>
+		<nav>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${#request.userPrincipal}">
+					<span th:text="${#request.userPrincipal.principal.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${#request.userPrincipal}">
+					<a href="/login">Login</a>
+				</div>
+			</div>
+		</nav>
 	</header>
 
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
 	<h1 th:text="'Regista per il film ' + ${movie.title}"></h1>
-	<div th:if="${artists.isEmpty()}">Non ci sono registi nel sistema</div>
-	<ul>
-		<li th:each="artist : ${artists}">
-			<a th:href="@{'/admin/setDirectorToMovie/'+ ${artist.id}+'/'+${movie.id}}"
-				th:text="${artist.name} + ' ' + ${artist.surname}">Steven Spielberg</a>
-		</li>
-	</ul>
+<div class="container">
+  <div th:if="${artists.isEmpty()}" class="empty-message">Non ci sono registi nel sistema</div>
+  <ul class="artist-list">
+    <li th:each="artist : ${artists}" class="artist-item">
+      <a th:href="@{'/admin/setDirectorToMovie/'+ ${artist.id}+'/'+${movie.id}}" class="artist-name" th:text="${artist.name} + ' ' + ${artist.surname}">Steven Spielberg</a>
+      <button class="confirm-button">Conferma</button>
+    </li>
+  </ul>
+</div>
+
+<script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+  const artistItems = document.querySelectorAll('.artist-item');
+  
+  artistItems.forEach((item) => {
+    item.addEventListener('mouseover', () => {
+      const confirmButton = item.querySelector('.confirm-button');
+      confirmButton.style.display = 'inline-block';
+    });
+    
+    item.addEventListener('mouseout', () => {
+      const confirmButton = item.querySelector('.confirm-button');
+      confirmButton.style.display = 'none';
+    });
+  });
+});
+
+</script>
 </body>
 
 </html>
