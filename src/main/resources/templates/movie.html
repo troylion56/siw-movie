@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Film</title>
-	<link rel="stylesheet" href="/css/stilePerTuttoilrest.css" />
+<head>
+  <title>Film</title>
+  <link rel="stylesheet" href="/css/stilePerTuttoilrest.css" />
 </head>
-
 <body>
-	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${#request.userPrincipal}">
-			<a href="/login">Login</a>
-		</div>
-	</header>
-
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
-    <h1>Dettagli Film</h1>
-    <div th:if="${movie}">
-        <span th:text="${movie.title}">Up!</span>
-        <span th:text="'(' + ${movie.year} + ')'">2000</span>
-        <span><img width="5%" th:src=${movie.urlImage} /></span>
+  <header>
+    <div th:if="${#request.userPrincipal}">
+      <span th:text="${#request.userPrincipal.principal.username}"></span>
+      <a href="/logout">Logout</a>
     </div>
-    <div th:unless="${movie}">Non esiste</div>
-  </body>
+    <div th:unless="${#request.userPrincipal}">
+      <a href="/login">Login</a>
+    </div>
+  </header>
+
+  <div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
+  <h1>Dettagli Film</h1>
+  <div th:if="${movie}">
+    <span th:text="${movie.title}">Up!</span>
+    <span th:text="'(' + ${movie.year} + ')'">2000</span>
+    <span><img width="5%" th:src=${movie.urlImage} /></span>
+    <div>
+      <button>Add Regista</button>
+    </div>
+  </div>
+  <div th:unless="${movie}">Non esiste</div>
+</body>
 </html>

