@@ -1,18 +1,8 @@
 package it.uniroma3.siw.model;
 
-import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.*;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 
 @Entity
@@ -37,6 +27,9 @@ public class Movie {
 	
 	@ManyToMany
 	private Set<Artist> actors;
+
+	@OneToMany(mappedBy = "movie")
+    private List<Recensione> recensioni;
 
 	public Long getId() {
 		return id;
@@ -85,9 +78,26 @@ public class Movie {
 		this.actors = actors;
 	}
 
+	public List<Recensione> getRecensioni() {
+		return recensioni;
+	}
+
+	public void setRecensioni(List<Recensione> recensioni) {
+		this.recensioni = recensioni;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(title, year);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((year == null) ? 0 : year.hashCode());
+		result = prime * result + ((urlImage == null) ? 0 : urlImage.hashCode());
+		result = prime * result + ((director == null) ? 0 : director.hashCode());
+		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
+		result = prime * result + ((recensioni == null) ? 0 : recensioni.hashCode());
+		return result;
 	}
 
 	@Override
@@ -99,7 +109,42 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
-		return Objects.equals(title, other.title) && year.equals(other.year);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (year == null) {
+			if (other.year != null)
+				return false;
+		} else if (!year.equals(other.year))
+			return false;
+		if (urlImage == null) {
+			if (other.urlImage != null)
+				return false;
+		} else if (!urlImage.equals(other.urlImage))
+			return false;
+		if (director == null) {
+			if (other.director != null)
+				return false;
+		} else if (!director.equals(other.director))
+			return false;
+		if (actors == null) {
+			if (other.actors != null)
+				return false;
+		} else if (!actors.equals(other.actors))
+			return false;
+		if (recensioni == null) {
+			if (other.recensioni != null)
+				return false;
+		} else if (!recensioni.equals(other.recensioni))
+			return false;
+		return true;
 	}
 }
 
