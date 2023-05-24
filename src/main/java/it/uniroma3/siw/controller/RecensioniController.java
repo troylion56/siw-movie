@@ -22,4 +22,9 @@ public class RecensioniController {
         model.addAttribute("recensione", new Recensione());
         return "formNewRecensione.html";
     }
+
+    @GetMapping("/recensioni/tutteLeRecensioni")
+    public String paginaTutteRecensioni(Model model){
+        return "/recensioni/tutteLeRecensioni.html";
+    }
 }
