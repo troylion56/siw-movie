@@ -25,47 +25,53 @@ body {
     width: 100px;
   }
   
+  .user-info a {
+    color: #fff;
+  }  
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    margin: 20px 0;
+    margin-bottom: 30px;
+  }
   
-h1 {
-  text-align: center;
-  font-size: 32px;
-  margin: 20px 0;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.container > div {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-li a {
-  display: block;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-li a:hover {
-  color: #e67e22;
-}
-
-.user-info a {
-  color: #fff;
-}
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container > div {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .artist-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .artist-details span {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .artist-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .artist-year {
+    font-size: 18px;
+  }
+  
+  .artist-image {
+    margin-top: 20px;
+    width: 50%;
+  }
+  
+  

@@ -5,47 +5,56 @@
 	<title>
 		New Artist
 	</title>
-	<link rel="stylesheet" href="/css/stilePerTuttoilrest.css" />
+	<link rel="stylesheet" href="/css/admin/formNewArtist.css" />
 </head>
 
 <body>
 	<header>
-		<div th:if="${#request.userPrincipal}">
-			<span th:text="${#request.userPrincipal.principal.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${#request.userPrincipal}">
-			<a href="/login">Login</a>
-		</div>
+		<nav>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${#request.userPrincipal}">
+					<span th:text="${#request.userPrincipal.principal.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${#request.userPrincipal}">
+					<a href="/login">Login</a>
+				</div>
+			</div>
+		</nav>
 	</header>
-
-	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>
 	<h1>Aggiungi un artista</h1>
-	<form th:action="@{/admin/artist}" method="POST" th:object="${artist}">
-		<div>
-			<span th:text="${messaggioErrore}">Errore</span>
+	<form th:action="@{/admin/artist}" method="POST" th:object="${artist}" class="artist-form">
+		<div class="error-message">
+		  <span th:text="${messaggioErrore}">Errore</span>
 		</div>
-		
-		<div>
-			<label>Nome:</label> <span><input required type="text" th:field="${artist.name}" /></span>
+	  
+		<div class="form-row">
+		  <label for="name">Nome:</label>
+		  <input required type="text" th:field="${artist.name}" id="name" />
 		</div>
-
-		<div>
-			<label>Cognome:</label> <span><input required type="text" th:field="${artist.surname}" /></span>
+	  
+		<div class="form-row">
+		  <label for="surname">Cognome:</label>
+		  <input required type="text" th:field="${artist.surname}" id="surname" />
 		</div>
-
-		<div>
-			<label>Data di nascita:</label> <span><input type="date" th:field="${artist.dateOfBirth}" /></span>
+	  
+		<div class="form-row">
+		  <label for="dateOfBirth">Data di nascita:</label>
+		  <input type="date" th:field="${artist.dateOfBirth}" id="dateOfBirth" />
 		</div>
-
-		<div>
-			<label>Fotografia (url):</label> <span><input type="text" th:field="${artist.urlOfPicture}" /></span>
+	  
+		<div class="form-row">
+		  <label for="urlOfPicture">Fotografia (URL):</label>
+		  <input type="text" th:field="${artist.urlOfPicture}" id="urlOfPicture" />
 		</div>
-		
-		<div>
-			<span><button type="submit">Conferma</button></span>
+	  
+		<div class="form-row">
+		  <button type="submit">Conferma</button>
 		</div>
-	</form>
+	  </form>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="/css/movie.css" />
 </head>
 <body>
-  <header>
+	<header>
 		<nav>
 			<div class="navbar">
 				<div class="logo">
@@ -21,8 +21,8 @@
 			</div>
 		</nav>
 	</header>
-  <h1>Dettagli Film</h1>
-  <div class="container">
+	<h1>Dettagli Film</h1>
+	<div class="container">
 		<div class="movie-details" th:if="${movie}">
 			<span class="movie-title" th:text="${movie.title}"></span>
 			<span class="movie-year" th:text="'(' + ${movie.year} + ')'"></span>
