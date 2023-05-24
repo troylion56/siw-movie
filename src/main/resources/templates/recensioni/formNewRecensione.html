@@ -2,8 +2,45 @@
 <html>
 <head>
     <title>Aggiungi Recensione</title>
+    <link rel="stylesheet" href="/css/recensioni/formNewRecensione.css" />
 </head>
 <body>
+  <header>
+		<nav>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${#request.userPrincipal}">
+					<span th:text="${#request.userPrincipal.principal.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${#request.userPrincipal}">
+					<a href="/login">Login</a>
+				</div>
+			</div>
+		</nav>
+	</header>
     <h1>Aggiungi Recensione</h1>
+    <form action="/aggiungiRecensione" method="post">
+        <label for="titolo">Titolo:</label>
+        <input type="text" id="titolo" name="titolo" required><br><br>
+
+        <label for="valutazione">Valutazione:</label>
+        <input type="number" id="valutazione" name="valutazione" min="1" max="5" required><br><br>
+
+        <label for="testo">Testo:</label><br>
+        <textarea id="testo" name="testo" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="movie">Film:</label>
+        <select id="movie" name="movie.id" required>
+            <option value="">Seleziona un film</option>
+            <th:block th:each="movie : ${movies}">
+                <option th:value="${movie.id}" th:text="${movie.title}"></option>
+            </th:block>
+        </select><br><br>
+
+        <input type="submit" value="Aggiungi Recensione">
+    </form>
 </body>
 </html>

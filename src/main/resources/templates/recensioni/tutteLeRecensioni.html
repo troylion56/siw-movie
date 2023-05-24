@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tutte le Recensioni</title>
+  <link rel="stylesheet" href="/css/recensioni/tutteLeRecensioni.css" />
+</head>
+<body>
+  <header>
+		<nav>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${#request.userPrincipal}">
+					<span th:text="${#request.userPrincipal.principal.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${#request.userPrincipal}">
+					<a href="/login">Login</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+    <h1>Tutte le Recensioni</h1>
+    
+    <div class="recensione">
+        <div class="titolo">Recensione 1</div>
+        <div class="valutazione">Valutazione: 4/5</div>
+        <div class="testo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur enim in tempor consequat.</div>
+        <div class="film">Film: Titolo del film 1</div>
+    </div>
+    
+    <div class="recensione">
+        <div class="titolo">Recensione 2</div>
+        <div class="valutazione">Valutazione: 3/5</div>
+        <div class="testo">Nulla accumsan dui eget ligula aliquam ultricies. Proin consectetur tristique erat, et iaculis eros bibendum sit amet.</div>
+        <div class="film">Film: Titolo del film 2</div>
+    </div>
+    
+    <div class="recensione">
+        <div class="titolo">Recensione 3</div>
+        <div class="valutazione">Valutazione: 5/5</div>
+        <div class="testo">Pellentesque eu ligula eu arcu tincidunt tempus. Suspendisse potenti. Fusce vestibulum lorem nec tristique fringilla.</div>
+        <div class="film">Film: Titolo del film 3</div>
+    </div>
+    
+    <!-- Aggiungi altre recensioni qui -->
+    
+</body>
+</html>

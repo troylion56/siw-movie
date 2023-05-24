@@ -16,21 +16,10 @@ public class RecensioniController {
 
     @Autowired
     private RecensioneRepository recensioneRepository;
-    /* 
+
     @GetMapping(value="/recensioni/formNewRecensione")
     public String formNewRecensione(Model model){
         model.addAttribute("recensione", new Recensione());
-        return "recensioni/formNewRecensione.html";
-    }*/
-
-    @Autowired
-    private MovieRepository movieRepository;
-
-    @GetMapping("/formNewRecensione")
-    public String showNewRecensioneForm(Model model) {
-        List<Movie> movies = movieRepository.findAll();
-        model.addAttribute("movies", movies);
-        model.addAttribute("recensione", new Recensione());
-        return "formNewRecensione";
+        return "formNewRecensione.html";
     }
 }
