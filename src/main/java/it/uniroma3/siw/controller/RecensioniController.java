@@ -6,9 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.repository.MovieRepository;
+import it.uniroma3.siw.service.MovieService;
 import it.uniroma3.siw.service.RecensioniService;
 
 @Controller
@@ -21,9 +24,11 @@ public class RecensioniController {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Autowired
+    private MovieService movieService;
+
     @GetMapping("/tutteLeRecensioni")
     public String paginaTutteRecensioni(Model model){
-        System.out.println("RECENSIONI");
         return "/recensioni/tutteLeRecensioni.html";
     }
 
@@ -35,9 +40,10 @@ public class RecensioniController {
     }
 
     @PostMapping("/aggiungiRecensione")
-    public String aggiungiRecensione(@ModelAttribute("recensione") Recensione recensione) {
+    public String aggiungiRecensione(@ModelAttribute("recensione") Recensione recensione, @RequestParam("movieId") Long movieId) {
+        Movie movie = movieService.findMovieById(movieId);
+        recensione.setMovie(movie);
         recensioneService.salvaRecensione(recensione);
-        return "test.html";
+        return "tutteLeRecensioni.html";
     }
-
-}
+} 
