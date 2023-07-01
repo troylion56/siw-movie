@@ -1,266 +1,54 @@
-*{
-    padding: 0%;
-    margin: 0%;
-    box-sizing: border-box;
-}
-
-
-body { 
-    font-family: "Geneva";
-    color:dimgrey;
-    width: 100%;
-    height: 100vh;
-    background: rgb(23, 23, 23);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-a { 
-	text-decoration: none; 
-    color: darkgrey;
-}
-
-a:hover { 
-	text-decoration: underline; 
-}
-
-label {
-	width: 8em;
-	display: inline-block;
-}
-
-header {
-    position: relative;
-    width: 80%;
-    height: 90%;
-    /*border: 1px solid #fff;*/
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 10px 25px -8px #000;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url("/images/money heist1.jpg") no-repeat center center/cover;
-    opacity: .6;
-    z-index: -1;
-}
-
-header::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #000);
-    z-index: -1;
-}
-
-header video{
-    position: absolute;
-    width: 136%;
-    height: 196%;
-    top: -49%;
-    z-index: -1;
-}
-
-header nav{
-    width: 100%;
-    height: 10%;
-    /*border: 1px solid #fff;*/ /*attiva se vuoi vedere la navBar*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    padding: 10px;
+    color: #fff;
+  }
+  
+  .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 50px;
-
-}
-
-header nav .logo_ul{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-header nav .logo_ul img{
-    width: 30px;  
-}
-
-
-header nav .logo_ul ul{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-}
-
-header nav .logo_ul ul li{
-    padding: 3px 15px;
-}
-
-header nav .logo_ul ul li a{
-    text-decoration: none;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    transition: .3s linear;
-}
-
-header nav .logo_ul ul li a:hover{
-    color: rgb(255, 255, 255, .7);
-}
-
-
-.login {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
+  }
+  
+  .logo {
+    margin-left: 20px;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  h1 {
     text-align: center;
-}
-
-header .content{
-    position: relative;
-    color: #fff;
-    margin-top: 50px;
-    padding-left: 50px;
-}
-
-header .content h1{
-    font-size: 50px;
-}
-
-header .content p{
-    font-size: 11px;
-    width: 350px;
-    word-break: break-all;
-}
-
-header .content .details{
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-header .content .details h6{
-    color: rgb(255, 255, 255, .8);
-    font-size: 10px;
-    margin-top: 10px;
-}
-
-header .content .details h5{
-    color: rgb(142, 230, 48, .8);
-    font-size: 10px;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-header .content .details h4{
-    color: #fff;
-    font-size: 10px;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-header .content .details h3{
-    color: #fff;
-    display: flex;
-    align-items: center;
-    font-size: 10px;
-    margin-top: 10px;
-}
-
-header .content .details h3 span{
-    background: yellow;
-    color: #000;
-    padding: 0px 3px;
-    margin: 0px 5px, 0px 10px;
-    font-weight: 500;
-    margin-right: 5px;
-}
-
-header .content .details h3 i{
-    margin-right: 5px;
-}
-
-header .content .btns{
+    margin-top: 30px;
+    color: #333;
+  }
+  
+  .menu-item {
+    text-align: center;
     margin-top: 20px;
-    display: flex;
-    align-items: center;
-}
-
-header .content .btns a{
-    padding: 8px 12px;
-    font-size: 15px;
-    font-weight: 600;
-    background: linear-gradient(90deg, #00bdff, #0079ff);
-    border-radius: 5px;
+  }
+  
+  .menu-item a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
     color: #fff;
-    margin-left: 10px;
     text-decoration: none;
-    animation: button 1s linear infinite;
-}
-
-
-@keyframes button{
-    0%{
-        background: linear-gradient(0deg, #00bdff, #0079ff);
-    }
-    12%{
-        background: linear-gradient(45deg, #00bdff, #0079ff);
-    }
-    24%{
-        background: linear-gradient(95deg, #00bdff, #0079ff);
-    }
-    36%{
-        background: linear-gradient(145deg, #00bdff, #0079ff);
-    }
-    48%{
-        background: linear-gradient(195deg, #00bdff, #0079ff);
-    }
-    60%{
-        background: linear-gradient(245deg, #00bdff, #0079ff);
-    }
-    72%{
-        background: linear-gradient(295deg, #00bdff, #0079ff);
-    }
-    110%{
-        background: linear-gradient(360deg, #00bdff, #0079ff);
-    }
-}
-
-header section{
-    position: absolute;
-    width: 100%;
-    height: auto;
-    padding: 0px 50px;
-    bottom: 20px;
+    border-radius: 4px;
+  }
+  
+  .menu-item a:hover {
+    background-color: #555;
+  }
+  
+  .user-info a {
     color: #fff;
-}
-
-header section .cards{
-    position: relative;
-    width: 100%;
-    height: 200px;
-    border: 1px solid #fff;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-}
-header section .cards::-webkit-scrollbar{
-    display: none;
-}
-
-header section .cards .card{
-    position: relative;
-    min-width: 130px;
-    height: 180px;
-    border: 1px solid #fff;
-    border-radius: 8px;
-    margin-right: 10px;
-    background: #000;
-    transition: .3s linear;
-}
+  }

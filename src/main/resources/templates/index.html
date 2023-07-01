@@ -2,61 +2,36 @@
 <html>
 
 <head>
-	<title>SiwMovie - Homepage</title>
-	<link rel="stylesheet" href="/css/index.css"/>
-	<link rel="icon" href="/favicon.ico">
+	<title>
+		SiwMovie - Homepage
+	</title>
+	<link rel="stylesheet" href="/css/index.css" />
 </head>
 
 <body>
 	<header>
-		<video src="/videos/theboys.webm" autoplay muted></video>
 		<nav>
-			<div class="logo_ul">
-				<img src="/img/logo-siw.png" alt="">
-				<ul>
-					<li>
-						<a href="/movie">Films</a>
-					</li>
-					<li>
-						<a href="/artist">Artists</a>
-					</li>
-					<li>
-						<a href="/tutteLeRecensioni">Recensioni</a>
-					</li>
-					<li>
-						<a href="/formNewRecensione">Aggiungi Recensione</a>
-					</li>
-				</ul>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${#request.userPrincipal}">
+					<span th:text="${#request.userPrincipal.principal.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${#request.userPrincipal}">
+					<a href="/login">Login</a>
+				</div>
 			</div>
-			<div class="login" th:if="${#request.userPrincipal}">
-			    <span th:text="${#request.userPrincipal.principal.username}"></span>
-			    <a href="/logout">Logout</a>
-		    </div>
-		    <div th:unless="${#request.userPrincipal}">
-			    <a href="/login">Login</a>
-		    </div>
 		</nav>
-		<div class="content">
-			<h1 id="tile">Money Heist</h1>
-			<p>is a Spanish heist crime drama television series created by Álex Pina. The series traces two long-prepared heists led by the Professor, one on the Royal Mint of Spain, and one on the Bank … </p>
-			<div class="details">
-				<h6>A Netflix Originale Film </h6>
-				<h5 id="gen"> Thriller</h5>
-				<h4> 2021</h4>
-				<h3 id="rate"><span> IMDB</span><i class="bi bi-star-fill"></i>    9.6</h3>
-			</div>
-			<div class="btns">
-				<a href="#" id="play"> Watch</i></a>
-				<a href="#" id="download_main"> Download </i></a>
-			</div>
-		</div>
-		<section>
-			<h4>Film</h4>
-			<div class="cards">
-				<a href="#" class="card"></a>
-			</div>
-		</section>
 	</header>
+	<h1>Consulta l'archivio</h1>
+	<div class="menu-item">
+		<a href="/movie">Elenco Film</a>
+	</div>
+	<div class="menu-item">
+		<a href="/artist">Elenco Artisti</a>
+	</div>
 </body>
 
 </html>
