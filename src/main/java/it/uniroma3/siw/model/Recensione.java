@@ -1,5 +1,9 @@
 package it.uniroma3.siw.model;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import java.util.*;
 
 @Entity
@@ -11,7 +15,10 @@ public class Recensione {
 
     private String titolo;
 
-    private int valutazione;
+    @NotNull
+    @Min(0)
+    @Max(5)
+    private Integer valutazione;
 
     private String testo;
 
