@@ -1,12 +1,17 @@
 package it.uniroma3.siw.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Movie;
+import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.repository.ArtistRepository;
 import it.uniroma3.siw.repository.MovieRepository;
 
@@ -76,5 +81,33 @@ public class MovieService {
 
     public List<Movie> findByYear(Integer year){
         return this.movieRepository.findByYear(year);
+    }
+
+
+    public String function(Model model,Movie movie,UserDetails user){
+        Set<Artist> movieCast = new HashSet<>();
+        if(movie.getActors() != null)
+            movieCast.addAll(movie.getActors());
+        movieCast.add(movie.getDirector());
+        movieCast.remove(null);
+        model.addAttribute("movieCast", movieCast);
+        model.addAttribute("movie", movie);
+        model.addAttribute("director", movie.getDirector());
+        if(user != null && this.alreadyReviewed(movie.getReviews(),user.getUsername()))
+            model.addAttribute("hasComment", true);
+        else
+            model.addAttribute("hasComment", false);
+        model.addAttribute("review", new Recensione());
+        model.addAttribute("reviews", movie.getReviews());
+        return "movie.html";
+    }
+
+    @Transactional
+    public boolean alreadyReviewed(Set<Recensione> rec,String author){
+        if(rec != null)
+            for(Recensione rev : rec)
+                if(rev.getAuthor().equals(author))
+                    return true;
+        return false;
     }
 }

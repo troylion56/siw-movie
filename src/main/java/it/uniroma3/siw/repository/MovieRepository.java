@@ -13,6 +13,4 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
 	public boolean existsByTitleAndYear(String title, int year);	
 
 	public List<Movie> findAll();
-
-	public List<Movie> findAllOrderByIdAsc();
 }

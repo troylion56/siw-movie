@@ -1,29 +1,24 @@
 package it.uniroma3.siw.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import java.util.Map;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import it.uniroma3.siw.controller.validator.RecensioneValidator;
 import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.repository.MovieRepository;
+import it.uniroma3.siw.repository.RecensioneRepository;
 import it.uniroma3.siw.service.MovieService;
 import it.uniroma3.siw.service.RecensioniService;
-
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RecensioniController {
-    
-
-    @Autowired
-    private RecensioniService recensioneService;
 
     @Autowired
     private MovieRepository movieRepository;
@@ -31,30 +26,31 @@ public class RecensioniController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/tutteLeRecensioni")
-    public String paginaTutteRecensioni(Model model){
-        return "/recensioni/tutteLeRecensioni.html";
-    }
+    @Autowired
+    private GlobalController globalController;
 
-    @GetMapping("/formNewRecensione")
-    public String formNewRecensione(Model model){
-        model.addAttribute("recensione", new Recensione());
-        model.addAttribute("movies", this.movieRepository.findAllOrderByIdAsc());
-        return "/recensioni/formNewRecensione.html";
-    }
+    @Autowired
+    private RecensioneValidator recensioneValidator;
 
-    @PostMapping("/aggiungiRecensione")
-    public String aggiungiRecensione(@ModelAttribute("recensione") Recensione recensione,HttpServletRequest request) {
+    @Autowired
+    private RecensioniService recensioniService;
 
-        Map<String, String[]> parameterMap = request.getParameterMap();
+    @Autowired
+    private RecensioneRepository recensioneRepository;
 
-        String idTendina = parameterMap.get("movie")[0];
+    @PostMapping("/user/uploadReview/{movieId}")
+    public String newReview(Model model, @Valid @ModelAttribute("review") Recensione review, BindingResult bindingResult, @PathVariable("movieId") Long id) {
+        this.recensioneValidator.validate(review,bindingResult);
+        Movie movie = this.movieRepository.findById(id).get();
+        if(!bindingResult.hasErrors()){
+            if(this.globalController.getUser() != null && !movie.getReviews().contains(review)){
+                review.setAuthor(this.globalController.getUser().getUsername());
+                this.recensioneRepository.save(review);
+                movie.getReviews().add(review);
+            }
+        }
+        this.movieRepository.save(movie);
 
-        Movie movie = movieService.findMovieById(Long.parseLong(idTendina));
-        recensione.setMovie(movie);
-        recensioneService.salvaRecensione(recensione);
-
-
-        return "tutteLeRecensioni.html";
+        return this.movieService.function(model, movie, this.globalController.getUser());
     }
 } 

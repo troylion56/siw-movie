@@ -1,27 +1,32 @@
-package it.uniroma3.siw.model;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 
+package it.uniroma3.siw.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
+import java.util.Objects;
 
 @Entity
 public class Recensione {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String titolo;
+    private String author; 
 
-    @NotNull
-    @Min(0)
+    @NotBlank
+    private String title;
+
+    @Min(1)
     @Max(5)
-    private Integer valutazione;
+    private Integer rating;
 
-    private String testo;
-
-    @ManyToOne
-    @JoinColumn(name = "film_id")
-    private Movie movie;
+    @NotBlank
+    private String text;
 
     public Long getId() {
         return id;
@@ -31,82 +36,48 @@ public class Recensione {
         this.id = id;
     }
 
-    public String getTitolo() {
-        return titolo;
+    public String getAuthor(){
+        return author;
     }
 
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
+    public void setAuthor(String author){
+        this.author = author;
     }
 
-    public int getValutazione() {
-        return valutazione;
+    public String getTitle() {
+        return title;
     }
 
-    public void setValutazione(int valutazione) {
-        this.valutazione = valutazione;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTesto() {
-        return testo;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setTesto(String testo) {
-        this.testo = testo;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public String getText() {
+        return text;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recensione recensione = (Recensione) o;
+        return Objects.equals(id, recensione.id) && Objects.equals(author, recensione.author) && Objects.equals(title, recensione.title) && Objects.equals(rating, recensione.rating) && Objects.equals(text, recensione.text);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
-        result = prime * result + valutazione;
-        result = prime * result + ((testo == null) ? 0 : testo.hashCode());
-        result = prime * result + ((movie == null) ? 0 : movie.hashCode());
-        return result;
+        return Objects.hash(id, author, title, rating, text);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Recensione other = (Recensione) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (titolo == null) {
-            if (other.titolo != null)
-                return false;
-        } else if (!titolo.equals(other.titolo))
-            return false;
-        if (valutazione != other.valutazione)
-            return false;
-        if (testo == null) {
-            if (other.testo != null)
-                return false;
-        } else if (!testo.equals(other.testo))
-            return false;
-        if (movie == null) {
-            if (other.movie != null)
-                return false;
-        } else if (!movie.equals(other.movie))
-            return false;
-        return true;
-    }
-    
 }

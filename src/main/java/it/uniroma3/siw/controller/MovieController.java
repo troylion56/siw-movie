@@ -23,7 +23,7 @@ import it.uniroma3.siw.service.MovieService;
 public class MovieController {
 	@Autowired 
 	private MovieService movieService;
-
+ 
 
 	@Autowired 
 	private ArtistService artistService;

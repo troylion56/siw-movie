@@ -9,7 +9,7 @@ import jakarta.validation.constraints.*;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
@@ -28,8 +28,8 @@ public class Movie {
 	@ManyToMany
 	private Set<Artist> actors;
 
-	@OneToMany(mappedBy = "movie")
-    private List<Recensione> recensioni;
+	@OneToMany
+    private Set<Recensione> recensione;
 
 	public Long getId() {
 		return id;
@@ -78,13 +78,13 @@ public class Movie {
 		this.actors = actors;
 	}
 
-	public List<Recensione> getRecensioni() {
-		return recensioni;
-	}
+	public Set<Recensione> getReviews(){
+        return recensione;
+    }
 
-	public void setRecensioni(List<Recensione> recensioni) {
-		this.recensioni = recensioni;
-	}
+    public void setReviews(Set<Recensione> rec){
+        this.recensione = rec;
+    }
 
 	@Override
 	public int hashCode() {
@@ -96,7 +96,7 @@ public class Movie {
 		result = prime * result + ((urlImage == null) ? 0 : urlImage.hashCode());
 		result = prime * result + ((director == null) ? 0 : director.hashCode());
 		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
-		result = prime * result + ((recensioni == null) ? 0 : recensioni.hashCode());
+		result = prime * result + ((recensione == null) ? 0 : recensione.hashCode());
 		return result;
 	}
 
@@ -139,10 +139,10 @@ public class Movie {
 				return false;
 		} else if (!actors.equals(other.actors))
 			return false;
-		if (recensioni == null) {
-			if (other.recensioni != null)
+		if (recensione == null) {
+			if (other.recensione != null)
 				return false;
-		} else if (!recensioni.equals(other.recensioni))
+		} else if (!recensione.equals(other.recensione))
 			return false;
 		return true;
 	}
