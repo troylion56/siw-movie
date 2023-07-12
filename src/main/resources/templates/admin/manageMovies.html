@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Film</title>
+	<link rel="stylesheet" href="/css/admin/manageMovies.css" />
+</head>
+
+<body>
+	<header> 
+		<nav>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${userDetails}">
+					<span th:text="${userDetails.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${user}">
+					<a href="/login">Login</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<h1>Film</h1>
+	<div th:if="${movies.isEmpty()}" class="empty-message">Non ci sono film nel sistema</div>
+	<ul class="movie-list">
+		<li th:each="movie : ${movies}">
+			<div class="movie-details">
+			<span th:text="${movie.title} + ' (' + ${movie.year} + ')'">Up! (2000)</span>
+			<a th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}">Aggiorna</a>
+		</div>
+		</li>
+	</ul>
+</body>
+
+</html>

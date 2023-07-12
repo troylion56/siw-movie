@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Film</title>
+	<link rel="stylesheet" href="/css/movie.css" />
+</head>
+
+<body>
+	<header> 
+		<nav>
+			<div class="navbar">
+				<div class="logo">
+					<a href="/"><img src="/images/logo-siw.png" alt="Logo" width="30%"></a>
+				</div>
+				<div class="user-info" th:if="${userDetails}">
+					<span th:text="${userDetails.username}"></span>
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="login-link" th:unless="${user}">
+					<a href="/login">Login</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+    <h1>Dettagli Film</h1>
+	<div class="container">
+    <div class="movie-details" th:if="${movie}">
+        <span class="movie-title" th:text="${movie.title}">Up!</span>
+        <span class="movie-year" th:text="'(' + ${movie.year} + ')'">2000</span>
+        <span><img th:src="@{'/display/image/' + ${movie.image.id}}"></span>
+    </div>
+    <div class="not-found-message" th:unless="${movie}">Non esiste</div>
+	</div>
+
+  </body>
+</html> 
