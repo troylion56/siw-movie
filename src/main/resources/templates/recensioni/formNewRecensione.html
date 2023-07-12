@@ -22,7 +22,7 @@
 		</nav>
 	</header>
     <h1>Aggiungi Recensione</h1>
-    <form action="/aggiungiRecensione" method="post" th:object="${recensione}">
+    <form th:action="@{/aggiungiRecensione}" method="post" th:object="${recensione}">
         <label for="titolo">Titolo:</label>
         
         <input type="text" id="titolo" name="titolo" required><br><br>
@@ -37,8 +37,8 @@
 
         <label for="movie">Film:</label>
         <select id="movie" name="movie">
-            <option th:each="movie : ${movies}" th:value="${movie.id}" th:text="${movie.title}"></option>
-          </select>
+            <option th:each="movie : ${movies}" th:value="${movie.id}" th:name="${movie.id}" th:text="${movie.title}"></option>
+        </select>
         <input type="submit" value="Aggiungi Recensione">
     </form>
 </body>

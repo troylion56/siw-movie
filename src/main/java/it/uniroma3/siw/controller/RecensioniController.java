@@ -1,5 +1,9 @@
 package it.uniroma3.siw.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,15 +39,22 @@ public class RecensioniController {
     @GetMapping("/formNewRecensione")
     public String formNewRecensione(Model model){
         model.addAttribute("recensione", new Recensione());
-        model.addAttribute("movies", this.movieRepository.findAll());
+        model.addAttribute("movies", this.movieRepository.findAllOrderByIdAsc());
         return "/recensioni/formNewRecensione.html";
     }
 
     @PostMapping("/aggiungiRecensione")
-    public String aggiungiRecensione(@ModelAttribute("recensione") Recensione recensione, @RequestParam("movieId") Long movieId) {
-        Movie movie = movieService.findMovieById(movieId);
+    public String aggiungiRecensione(@ModelAttribute("recensione") Recensione recensione,HttpServletRequest request) {
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+
+        String idTendina = parameterMap.get("movie")[0];
+
+        Movie movie = movieService.findMovieById(Long.parseLong(idTendina));
         recensione.setMovie(movie);
         recensioneService.salvaRecensione(recensione);
+
+
         return "tutteLeRecensioni.html";
     }
 } 
