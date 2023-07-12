@@ -2,7 +2,7 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
 import java.util.*;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity

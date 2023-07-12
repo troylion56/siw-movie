@@ -1,10 +1,7 @@
 package it.uniroma3.siw.model;
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
-import java.util.*;
 
 @Entity
 public class Recensione {
