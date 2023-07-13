@@ -14,7 +14,7 @@
 				</div>
 				<div class="user-info" th:if="${userDetails}">
 					<span th:text="${userDetails.username}"></span>
-					<a href="/logout">Logout</a>
+					<a href="/logout">Logout</a> 
 				</div>
 				<div class="login-link" th:unless="${user}">
 					<a href="/login">Login</a>
@@ -29,8 +29,88 @@
         <span class="movie-year" th:text="'(' + ${movie.year} + ')'">2000</span>
         <span><img th:src="@{'/display/image/' + ${movie.image.id}}"></span>
     </div>
+	<div class="movie-cast-content">
+		<h1>Cast:</h1>
+		<div th:if="${movieCast.isEmpty()}">
+			None
+		</div>
+		<div th:unless="${movieCast.isEmpty()}">
+			<div th:if="${director}">
+				<h4>Director:<span th:text="${director.name + ' ' + director.surname}">.</span></h4>
+			</div>
+			<div class="artists">
+				<ul th:each="artist : ${movieCast}">
+					<div class="cards">
+						<a th:href="@{'/artists' + '/' + ${artist.id}}">
+							<!--<img th:src="@{'data:image/*;base64,'+${artist.profilePicture.base64Image}}">-->
+							<img th:src="@{'/display/image/' + ${artist.profilePicture.id}}">
+							<div class="artist-info">
+								<h4 th:text="${artist.name + ' ' + artist.surname}">.</h4>
+							</div>
+						</a>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="movie-review-content">
+		<div class="personal-review" th:unless="${hasComment}">
+			<form th:action="@{'/user/uploadReview/' + ${movie.id}}" method="post" th:object="${review}" class="form">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				</div>
+				<div class="form-field">
+					<label for="title">Title</label>
+					<input required type="text" id="title" name="title" th:field="${review.title}">
+					<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+				</div>
+				<div class="form-field">
+					<label for="text">Text</label>
+					<input required type="text" id="text" name="text" th:field="${review.text}">
+					<span th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></span>
+				</div>
+				<div class="form-field">
+					<label for="rating">Rating</label>
+					<input required type="number" id="rating" min="1" max="5" name="rating" th:field="${review.rating}">
+					<span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></span>
+				</div>
+				<div class="form-field">
+					<button class="comment-button" type="submit">Commenta</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div>
+		<div th:if="${reviews}">
+			<div th:unless="${reviews.isEmpty()}" class="other-review">
+				<h1 class="review-heading">Recensioni</h1>
+				<ul class="review-list">
+					<li th:each="rev : ${reviews}" class="review-item">
+						<div class="review">
+							<div class="header">
+								<h2 class="review-title" th:text="${rev.title}"></h2>
+							</div>
+							<div class="autore">
+								<span class="author-label">Autore:</span>
+								<h3 class="review-author" th:text="${rev.author}"></h3>
+							</div>
+							<p class="review-text" th:text="${rev.text}"></p>
+							<div class="bottom-label">
+								<p class="review-rating" th:text="'Rating: ' + ${rev.rating}"></p>
+								<button th:if="${role != null && role == 'ADMIN'}" class="delete-review">
+									<a th:href="'/admin/deleteReview/' + ${movie.id} + '/' + ${rev.id}" class="log">Delete</a>
+								</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
     <div class="not-found-message" th:unless="${movie}">Non esiste</div>
 	</div>
+
 
   </body>
 </html> 

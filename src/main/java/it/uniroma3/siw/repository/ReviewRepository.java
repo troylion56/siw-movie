@@ -9,4 +9,4 @@ public interface ReviewRepository extends CrudRepository<Review,Long>{
     public boolean existsByAuthorAndTitleAndRatingAndText(String author,String title,Integer rating, String text);
 
     public Review findByAuthor(String author);
-}
+} 

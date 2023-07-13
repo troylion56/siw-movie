@@ -73,4 +73,10 @@ public class ArtistController {
 		model.addAttribute("artists", this.artistRepository.findAll());
 		return "artists.html";
 	}
+
+	@GetMapping("/artists/{artistId}") //questo per vedere l'artista dal film
+    public String getArtist(Model model,@PathVariable("artistId") Long id){
+        model.addAttribute("artist", this.artistRepository.findById(id).get());
+        return "artist.html";
+    }
 }

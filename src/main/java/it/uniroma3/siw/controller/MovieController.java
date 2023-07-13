@@ -104,13 +104,7 @@ public class MovieController {
 	@GetMapping("/movie/{id}")
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		Movie movie= movieService.findMovieById(id);
-		if(movie !=null){
-			model.addAttribute("movie", movie);
-		    return "movie.html";
-		}
-		else {
-			return "movieError.html";
-		}
+		return this.movieService.function(model, movie, this.globalController.getUser());
 	}
 
 	@GetMapping("/movie")
