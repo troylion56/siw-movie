@@ -54,7 +54,7 @@ public class AuthenticationController {
 		}
         return "index.html";
 	}
-		
+		 
     @GetMapping(value = "/success")
     public String defaultAfterLogin(Model model) {
         

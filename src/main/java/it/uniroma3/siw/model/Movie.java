@@ -31,8 +31,6 @@ public class Movie {
         @Max(2023)
         private Integer year;
         
-        private String urlImage;
-        
         @ManyToOne
         private Artist director;
 
@@ -66,14 +64,6 @@ public class Movie {
     
         public void setYear(Integer year) {
             this.year = year;
-        }
-        
-        public String getUrlImage() {
-            return urlImage;
-        }
-    
-        public void setUrlImage(String urlImage) {
-            this.urlImage = urlImage;
         }
     
         public Artist getDirector() {
